@@ -227,8 +227,8 @@ To document the pipeline execution, screenshots were taken of the following:
 ![Scheduled Run in ML Studio](./images/scheduled-run.png)
 
 ## Screen Recording
-A video describing this project can be found here:
-https://youtu.be/VihhfnFATa0
+A video showcasing this project can be found here:
+[Optimize-ML Demonstration](https://youtu.be/Gq4244_GPhM)
 
 ## Future Improvements
 The model has already demonstrated significant success; however, there are two areas I would like to explore further in the future:
