@@ -228,7 +228,7 @@ To document the pipeline execution, screenshots were taken of the following:
 
 ## Screen Recording
 A video showcasing this project can be found here:
-[Optimize-ML Demonstration](https://youtu.be/Gq4244_GPhM)
+[[Optimize-ML Demonstration](https://youtu.be/7vFvpM71Sys)
 
 ## Future Improvements
 The model has already demonstrated significant success; however, there are two areas I would like to explore further in the future:
