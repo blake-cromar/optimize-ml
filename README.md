@@ -1,7 +1,15 @@
 # Optimize Machine Learning - Bank Marketing Predictor
 
+## Project Overview
+
+This project focuses on building, deploying, and monitoring a machine learning model using **Azure Machine Learning Studio** and **Automated ML (AutoML)**. The setup begins with configuring authentication through the **Azure CLI**, installing necessary extensions, and creating a **Service Principal (SP)** with the required permissions. After authentication, an **AutoML experiment** is conducted to train models using the **Bankmarketing dataset** on a cloud-based compute cluster. The experiment optimizes for model performance while considering cost efficiency by adjusting exit criteria, concurrency settings, and early stopping thresholds. Once training is complete, the best-performing model is identified and prepared for deployment.
+
+Deployment is carried out using **Azure Container Instance (ACI)** to expose the model as an API endpoint for real-time inference. **Application Insights** is integrated to monitor performance and collect logs, ensuring visibility into model behavior. **Swagger UI** is then used to interact with the API, test endpoints, and validate predictions. Performance benchmarking is conducted using **Apache Benchmark (ab)** to measure response times and API throughput. Additionally, the end-to-end **ML pipeline** is automated using the **Azure ML Python SDK** within a Jupyter Notebook, streamlining dataset management, training, and deployment. Future improvements include implementing **automatic retraining triggers** and refining **early-stopping criteria** to further enhance model performance and efficiency.
+
 ## Architectural Diagram
 ![alt text](architectural-diagram.png)
+
+
 
 ## Key Steps
 
@@ -31,7 +39,7 @@ To interact with Azure Machine Learning Studio, it is necessary to configure the
 
 
 - The `az ml workspace share` command couldn't be run as it's no longer a command that can be run with the current version of the Azure CLI.
-- Instead of using the share command to verify this I ran `az role assignment list` to verify the service principal has the role of a contributor.
+- Instead of using the share command to verify this I ran `az role assignment list` to verify the service principal has the role of a contributor. Take note that the principal has an `SP_ID` of `18992d81-3ec6-4aee-9c71-fc6a390df4d7`. 
 
 ![alt text](./images/workspace-share.png)
 
@@ -220,15 +228,14 @@ To document the pipeline execution, screenshots were taken of the following:
 ##### **The Published Pipeline Overview (REST Endpoint & ACTIVE Status)**  
 ![Published Pipeline Overview](./images/published-pipeline.png)  
 
-##### **The RunDetails Widget in Jupyter Notebook (Step Execution Confirmation)**  
-![RunDetails Widget in Jupyter Notebook](./images/rundetails-widget.png)  
+
 
 ##### **The Scheduled Run Appearing in ML Studio**  
 ![Scheduled Run in ML Studio](./images/scheduled-run.png)
 
 ## Screen Recording
-A video showcasing this project can be found here:
-[[Optimize-ML Demonstration](https://youtu.be/7vFvpM71Sys)
+A video describing this project can be found here:
+https://youtu.be/VihhfnFATa0
 
 ## Future Improvements
 The model has already demonstrated significant success; however, there are two areas I would like to explore further in the future:
@@ -236,3 +243,32 @@ The model has already demonstrated significant success; however, there are two a
 **Implementing a More Robust Retraining Schedule:** Establishing a mechanism that triggers model retraining based on predefined conditions, such as a set time interval or changes in the dataset.
 
 **Adjusting Early-Stopping Criteria:** Relaxing early-stopping thresholds both at the individual algorithm level and for the overall experiment duration. Extending the total runtime to approximately two hours could yield more meaningful results.
+
+
+## **Note on the RunDetails Widget in Jupyter Notebook (Step Execution Confirmation)**
+⚠️⚠️**There seems to be a major error with the RunDetails widget** ⚠️⚠️ 
+
+I utilized the exact code as suggested by the **Udacity instructor.** [The webpage suggested](https://learn.microsoft.com/en-us/python/api/azureml-widgets/azureml.widgets.rundetails?view=azure-ml-py) using this code:
+```
+   from azureml.widgets import RunDetails
+
+   RunDetails(remote_run).show()
+```
+
+The below images shows that I used that implemented the suggested code code on the official Microsoft Website:
+
+![RunDetails Widget in Jupyter Notebook](./images/rundetails-widget.png)
+
+
+I also checked and it seems that the `Python 3.8 - AzureML` environment is what is needed. I confirmed that I am using that.
+![Jupyter Environment](./images/jupyter-env.png)
+
+I installed many things including what the suggested webpage instructed. Here is an image of some of what I tried installing.
+![Pip Installations](./images/pip-installations.png)
+
+### Assessment on the Widget
+I'm not entirely sure why the widget is not rendering. I've had this issue before which is why I resorted to printing the details previously when I made the original submission. This widget doesn't seem compatible with `SDK v2` either after looking it up online. Some people online have also had trouble rendering the widget apparently. I have also tried many other things involving installing many other things the internet has suggested installing to render the widget. It will not show up. 
+
+If you look closely at the image of the code I used to run the experiment you can see that the import is underlined. It's odd as the system doesn't break when I run the cell. I took note of that, but can't explain why I'm seeing this anomaly despite uninstalling, updating, and installing various packages.
+
+I would like to show you that I got this particular capability of Azure ML Studio running (though not rendering) and that I have enough evidence to believe there is some sort of conflict with either the Azure ML Studio or the package itself. While it may not be what Udacity is looking for my assessment on the widget is what I have to present instead. 
