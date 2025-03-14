@@ -255,7 +255,7 @@ I utilized the exact code as suggested by the **Udacity instructor.** [The webpa
    RunDetails(remote_run).show()
 ```
 
-The below images shows that I used that implemented the suggested code code on the official Microsoft Website:
+The below image shows that I used that implemented the suggested code code on the official Microsoft Website:
 
 ![RunDetails Widget in Jupyter Notebook](./images/rundetails-widget.png)
 
