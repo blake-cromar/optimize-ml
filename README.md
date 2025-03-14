@@ -235,7 +235,7 @@ To document the pipeline execution, screenshots were taken of the following:
 
 ## Screen Recording
 A video describing this project can be found here:
-https://youtu.be/VihhfnFATa0
+[YouTube Presentation](https://youtu.be/dYU5CJc9E6E)
 
 ## Future Improvements
 The model has already demonstrated significant success; however, there are two areas I would like to explore further in the future:
